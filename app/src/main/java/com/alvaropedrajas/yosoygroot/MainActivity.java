@@ -103,8 +103,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         c.getColumnIndexOrThrow(BBDD.COLUMN_NAME_2)
                 );
 
-
-                //HAY QUE EDITAR AQUI
                 Toast.makeText(getApplicationContext(), "El nombre es: " + item, Toast.LENGTH_SHORT).show();
                 c.close();
                 break;
