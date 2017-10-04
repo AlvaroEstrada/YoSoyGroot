@@ -80,13 +80,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 };
 
                 String selection = BBDD.COLUMN_NAME_1 + " = ?";
-                String[] selectionArgs = { "My Title" };
+                String[] selectionArgs = { et_id.getText().toString() };
 
                 String sortOrder =
                         BBDD.COLUMN_NAME_2 + " DESC";
 
                 Cursor c = db.query(
-                        BBDD.TABLE_NAME,                     // The table to query
+                        BBDD.TABLE_NAME,                          // The table to query
                         projection,                               // The columns to return
                         selection,                                // The columns for the WHERE clause
                         selectionArgs,                            // The values for the WHERE clause
@@ -94,9 +94,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         null,                                     // don't filter by row groups
                         sortOrder                                 // The sort order
                 );
-                
+
+                if (c.getCount() > 0){
+                    c.moveToFirst();
+                }
+
+                String item = c.getString(
+                        c.getColumnIndexOrThrow(BBDD.COLUMN_NAME_2)
+                );
+
+
                 //HAY QUE EDITAR AQUI
-                Toast.makeText(getApplicationContext(), "El nombre es: " + c, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "El nombre es: " + item, Toast.LENGTH_SHORT).show();
+                c.close();
                 break;
             case R.id.btnDelete:
 
